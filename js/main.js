@@ -502,6 +502,12 @@ function generateCode(inputXml) {
 
     //XML Vector start
     generatedOutput = '<?xml version="1.0" encoding="utf-8"?>\n';
+    var copyright = document.getElementById("copyright_header").value;
+    if (copyright) {
+        generatedOutput += '<!--\n';
+        generatedOutput += copyright;
+        generatedOutput += '\n-->\n';
+    }
     generatedOutput += '<vector xmlns:android="http://schemas.android.com/apk/res/android"';
 
     generatedOutput += '\n' + INDENT + 'android:width="{0}dp"\n'.f(width);
@@ -616,7 +622,6 @@ function removeNonNumeric(input) {
     if (typeof input === "undefined") return input;
     return input.replace(/[^0-9.]/g, "");
 }
-
 
 function generateAttr(name, val, groupLevel, def, end) {
     if (typeof val === "undefined" || val == def || val == "null") return "";
